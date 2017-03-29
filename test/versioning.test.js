@@ -73,6 +73,12 @@ describe('versioning', function() {
             "node-webkit": '0.37.3',
         };
         assert.equal(versioning.get_process_runtime(mock_process_versions3),'node-webkit');
+        var mock_process_versions4 = {
+            "node": '0.8.0'
+        }
+        process.env.ELECTRON_RUN_AS_NODE = 1
+        assert.equal(versioning.get_process_runtime(mock_process_versions4),'electron');
+        delete process.env.ELECTRON_RUN_AS_NODE
     });
 
     it('should detect abi for electron runtime', function() {
